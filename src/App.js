@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from "react-router";
+import {FooterComponent} from "./app/components/Footer";
+import {HeaderComponent} from "./app/components/Header";
+import {Home} from "./app/pages/Home";
+import {About} from "./app/pages/About";
+import {Contacts} from "./app/pages/Contacts";
+import {Tickets} from "./app/pages/Tickets";
+import {Ticket} from "./app/pages/Ticket";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <div className="m-auto flex flex-col min-h-screen mx-auto max-w-screen-xl">
+                <HeaderComponent/>
+                <div className="flex-grow">
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/about" element={<About/>}/>
+                        <Route path="/contacts" element={<Contacts/>}/>
+                        <Route path="/tickets" element={<Tickets/>}/>
+                        <Route path="/tickets/:id" element={<Ticket/>}/>
+                    </Routes>
+                </div>
+            </div>
+            <FooterComponent/>
+        </>
+    );
 }
 
 export default App;
