@@ -34,32 +34,29 @@ export const Tickets = () => {
         navigate(`/tickets?${searchParams.toString()}`);
     };
 
-    return (<div className="max-w-7xl mx-auto">
-        <form onSubmit={handleSubmit} className="max-w-xl flex items-end mb-4 mt-4">
-            <div className="m-2">
-                <label htmlFor="to"
-                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Откуда</label>
+    return (<div className="">
+        <form  style={{backgroundImage: "url('https://storage.yandexcloud.net/moskvichmag/uploads/2023/12/es104.jpg')", backgroundSize: "cover"}} className="flex justify-center pb-64 pt-64 mb-4 mt-4 align-center" onSubmit={handleSubmit}>
+            <div className="m-3">
                 <input type="text" id="to" value={to} onChange={(e) => setTo(e.target.value)}
-                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required/>
+                placeholder='Откуда'
+                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       />
             </div>
-            <div className="m-2">
-                <label htmlFor="from"
-                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Куда</label>
+            <div className="m-3">
                 <input type="text" id="from" value={from} onChange={(e) => setFrom(e.target.value)}
-                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required/>
+                placeholder='Куда'
+                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       />
             </div>
-            <div className="m-2">
-                <label htmlFor="date"
-                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Когда</label>
+            <div className="m-3">
                 <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)}
-                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required/>
+                        placeholder='Когда'
+                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       />
             </div>
             {(to.length || from.length || date.length) ?
                 <button onClick={clearFilter} type="button"
-                        className="m-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        className="m-5 transition bg-blue-600 text-white rounded-lg p-3">
                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                          viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -67,37 +64,39 @@ export const Tickets = () => {
                     </svg>
                     <span className="sr-only">Close modal</span>
                 </button>
-                : null}
+                : <></>}
         </form>
         <div className="m-4 flex flex-wrap justify-center align-center">
-            {filteredCards.length ? filteredCards.map((card, index) => (<Link to={"/tickets/" + card.trainNumber} key={index} className="w-96 m-4 transition hover:translate-y-[-5px]">
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div className="p-4">
-                        <div className="flex items-center justify-between">
-                            <span className="text-gray-700 font-bold text-xl">№ {card.trainNumber}</span>
-                            <span className="text-gray-500">{card.status}</span>
-                        </div>
-                        <div className="mt-4">
-                            <span className="text-gray-700 font-bold text-lg">{card.reviews}</span>
-                        </div>
+            {filteredCards.length ? filteredCards.map((card, index) => (
+            <Link to={"/tickets/" + card.trainNumber} key={index} className="w-96 m-4 transition hover:translate-y-[-5px]">
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="p-4">
+                    <div className="flex items-center justify-between">
+                        <span className="text-gray-700 font-bold text-xl">№ {card.trainNumber}</span>
+                        <span className="text-gray-500">{card.status}</span>
                     </div>
-                    <div className="bg-gray-200 p-4">
-                        <div className="flex justify-between items-center">
-                            <span className="text-lg font-bold">{card.departureTime}</span>
-                            <span className="text-lg">{card.duration}</span>
-                            <span className="text-lg font-bold">{card.arrivalTime}</span>
+                    <div className="mt-4">
+                        <span className="text-gray-700 font-bold text-lg">{card.reviews.length} отзыва</span>
+                    </div>
+                </div>
+                <div className="bg-orange-200 p-4">
+                    <div className="flex justify-between items-center">
+                        <span className="text-lg font-bold">{card.departureTime}</span>
+                        <span className="text-lg">{card.duration}</span>
+                        <span className="text-lg font-bold">{card.arrivalTime}</span>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                        <div>
+                            <span className="text-gray-700">{card.departureCity}</span>
                         </div>
-                        <div className="flex justify-between mt-2">
-                            <div>
-                                <span className="text-gray-700">{card.departureCity}</span>
-                            </div>
-                            <div>
-                                <span className="text-gray-700">{card.arrivalCity}</span>
-                            </div>
+                        <div>
+                            <span className="text-gray-700">{card.arrivalCity}</span>
                         </div>
                     </div>
                 </div>
-            </Link>)) : <div>
+            </div>
+        </Link>
+            )) : <div>
                 <h3>Ничего нет :(</h3>
             </div>}
         </div>

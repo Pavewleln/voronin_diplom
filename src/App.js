@@ -10,7 +10,7 @@ import {Ticket} from "./app/pages/Ticket";
 function App() {
     return (
         <>
-            <div className="m-auto flex flex-col min-h-screen mx-auto max-w-screen-xl">
+            <div className="m-auto flex flex-col min-h-screen">
                 <HeaderComponent/>
                 <div className="flex-grow">
                     <Routes>

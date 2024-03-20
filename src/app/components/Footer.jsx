@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 export const FooterComponent = () => {
     return (
-        <Footer container>
+        <Footer container style={{'background-color': 'rgb(240, 238, 235)'}}>
             <Footer.Copyright href="#" by="БайБай" year={2024}/>
             <Footer.LinkGroup>
                 <Link className={"me-4"} to={"/about"}>О нас</Link>
